@@ -65,7 +65,7 @@ jobs:
 
 
     - name: List Files
-      run: ls ${{ github.workspace }} && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk && ls ${{ github.workspace }}/extracted_artifacts && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug
+      run: ls ${{ github.workspace }} && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk && ls ${{ github.workspace }}/ && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug
 
     # - name: Download and Unzip Artifact
     #   uses: montudor/action-zip@v1
