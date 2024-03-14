@@ -67,10 +67,10 @@ jobs:
     - name: List Files
       run: ls ${{ github.workspace }} && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk && ls ${{ github.workspace }}/extracted_artifacts && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug
 
-    - name: Download and Unzip Artifact
-      uses: montudor/action-zip@v1
-      with:
-       args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
+    # - name: Download and Unzip Artifact
+    #   uses: montudor/action-zip@v1
+    #   with:
+    #    args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
   
     - name: Create Release
       uses: softprops/action-gh-release@v1
