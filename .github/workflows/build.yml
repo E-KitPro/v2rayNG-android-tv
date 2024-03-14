@@ -65,7 +65,7 @@ jobs:
 
 
     - name: Download and Unzip Artifact
-      uses: montudor/action-zip@v0.2
+      uses: montudor/action-zip
       with:
        args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
   
