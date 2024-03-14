@@ -85,10 +85,6 @@ jobs:
     #   run: git push origin "v${{ steps.commit_hash.outputs.hash }}"
 
 
-
-    - name: List Extracted Files
-      run: ls ${{ github.workspace }}/extracted_artifacts
-
     - name: Get latest commit hash
       id: commit_hash
       run: echo "::set-output name=hash::$(git rev-parse --short HEAD)"
