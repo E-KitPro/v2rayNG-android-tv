@@ -62,3 +62,21 @@ jobs:
       with:
         name: apk
         path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/
+
+
+    - name: Download and Unzip Artifact
+      uses: montudor/action-zip@v0.2
+      with:
+       args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
+  
+    - name: List Extracted Files
+      run: ls ${{ github.workspace }}/extracted_artifacts
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: apk
+        path: ${{ github.workspace }}/extracted_artifacts
+
+
+    
