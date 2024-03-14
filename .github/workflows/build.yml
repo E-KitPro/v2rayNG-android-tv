@@ -72,14 +72,27 @@ jobs:
     #   with:
     #    args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
   
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*.apk
-        tag_name: ${{ github.ref }}
+    # - name: Get latest commit hash
+    #   id: commit_hash
+    #   run: echo "::set-output name=hash::$(git rev-parse --short HEAD)"
+
+    # - name: Create lightweight tag
+    #   run: git tag -a -m "Auto-generated tag" "v${{ steps.commit_hash.outputs.hash }}"
+    #   if: success()
+
+    # - name: Push tag to repository
+    #   if: success()
+    #   run: git push origin "v${{ steps.commit_hash.outputs.hash }}"
+
+
 
     - name: List Extracted Files
       run: ls ${{ github.workspace }}/extracted_artifacts
+
+    - name: Get latest commit hash
+      id: commit_hash
+      run: echo "::set-output name=hash::$(git rev-parse --short HEAD)"
+
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
@@ -89,3 +102,9 @@ jobs:
 
 
     
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*.apk
+        tag_name: v${{ steps.commit_hash.outputs.hash }}
+         
