@@ -69,6 +69,12 @@ jobs:
       with:
        args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
   
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*.apk
+        tag_name: ${{ github.ref }}
+
     - name: List Extracted Files
       run: ls ${{ github.workspace }}/extracted_artifacts
 
