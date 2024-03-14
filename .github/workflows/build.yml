@@ -61,7 +61,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: apk
-        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/
+        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug
 
 
     - name: List Files
@@ -100,7 +100,6 @@ jobs:
         name: apk
         path: ${{ github.workspace }}/extracted_artifacts
 
-
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
@@ -108,3 +107,10 @@ jobs:
         files: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*.apk
         tag_name: v${{ steps.commit_hash.outputs.hash }}
          
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: apk
+        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/v2rayNG_1.8.18_armeabi-v7a.apk
+  
