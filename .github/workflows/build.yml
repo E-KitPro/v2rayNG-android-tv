@@ -57,33 +57,11 @@ jobs:
         sed -i 's/org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8/org.gradle.jvmargs=-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8/' ${{ github.workspace }}/V2rayNG/gradle.properties
         ./gradlew assembleDebug
 
-    - name: Upload APK
+    - name: Upload APK Files
       uses: actions/upload-artifact@v4
       with:
-        name: apk
+        name: apk-files
         path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug
-
-
-    - name: List Files
-      run: ls ${{ github.workspace }} && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk && ls ${{ github.workspace }}/ && ls ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug
-
-    # - name: Download and Unzip Artifact
-    #   uses: montudor/action-zip@v1
-    #   with:
-    #    args: extract ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/apk.zip -d ${{ github.workspace }}/extracted_artifacts
-  
-    # - name: Get latest commit hash
-    #   id: commit_hash
-    #   run: echo "::set-output name=hash::$(git rev-parse --short HEAD)"
-
-    # - name: Create lightweight tag
-    #   run: git tag -a -m "Auto-generated tag" "v${{ steps.commit_hash.outputs.hash }}"
-    #   if: success()
-
-    # - name: Push tag to repository
-    #   if: success()
-    #   run: git push origin "v${{ steps.commit_hash.outputs.hash }}"
-
 
     - name: Get latest commit hash
       id: commit_hash
@@ -103,10 +81,3 @@ jobs:
         files: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*.apk
         tag_name: v${{ steps.commit_hash.outputs.hash }}
          
-
-    - name: Upload Signle APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: signle-apk
-        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/v2rayNG_1.8.18_armeabi-v7a.apk
-  
